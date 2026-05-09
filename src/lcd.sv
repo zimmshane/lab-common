@@ -5,9 +5,9 @@ module lcd #(
 	parameter BUFFER_VERTICAL = 13,// LINES
 	parameter SPRITE_WIDTH = 16,
 	parameter SPRITE_HEIGHT = 16,
-	parameter PADDING_ELEMENT = 16'h00F0,
-	parameter HORIZONTAL_PADDING = 10,
-	parameter VERTICAL_PADDING = 10
+	parameter PADDING_ELEMENT = 16'h0000, //color
+	parameter HORIZONTAL_PADDING = 1,
+	parameter VERTICAL_PADDING = 1
 )(
     input  rst,
     input  pclk,        // 8MHz clk
@@ -30,11 +30,11 @@ localparam VERT_CYCLE  = SPRITE_HEIGHT + VERTICAL_PADDING;
 logic [$clog2(HORIZONTAL_TOTAL)-1:0] horizontal_pos;
 logic [$clog2(VERTICAL_TOTAL)-1:0]   vertical_pos;
 
-// Sprite + Padding  position within the repeating tiles
+// Sprite + Padding position within the repeating tiles
 logic [$clog2(HORIZ_CYCLE)-1:0] h_cycle_pos;
 logic [$clog2(VERT_CYCLE)-1:0]  v_cycle_pos;
 
-// Derived signals for output logic
+// output logic signals
 logic in_sprite_h;
 logic in_sprite_v;
 logic [$clog2(SPRITE_WIDTH)-1:0]  sprite_col;
