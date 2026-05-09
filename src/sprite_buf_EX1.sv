@@ -26,9 +26,5 @@ module dp_buffer #(
     16'h0000, 16'h0000, 16'h6204, 16'h6204, 16'h6204, 16'h6204, 16'h0000, 16'h0000, 16'h6204, 16'h6204, 16'h6204, 16'h6204, 16'h0000, 16'h0000, 16'h0000, 16'h0000,
     16'h0000, 16'h6204, 16'h6204, 16'h6204, 16'h6204, 16'h6204, 16'h0000, 16'h0000, 16'h6204, 16'h6204, 16'h6204, 16'h6204, 16'h6204, 16'h0000, 16'h0000, 16'h0000
 };
-
-    always_ff @(posedge clk ) begin
-        rdata <= mem[raddr];  // synchronous read → EBR
-    end
-
+    assign rdata = mem[raddr];
 endmodule
