@@ -15,13 +15,11 @@ module dp_buffer #(
     output logic [WIDTH-1:0]  rdata
 );
     logic [WIDTH-1:0] mem [0:DEPTH-1];
-    logic [ADDR_W-1:0] prev_waddr ;
-    always_ff @(posedge clk ) begin
-        if (prev_waddr != waddr && we)begin
+
+    always_ff @(posedge clk) begin
+        if (we)
             mem[waddr] <= wdata;
-            prev_waddr <= waddr;
-        end
-        rdata <= mem[raddr];  // synchronous read → EBR
+        rdata <= mem[raddr];
     end
 
 endmodule
